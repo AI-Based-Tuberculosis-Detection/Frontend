@@ -1,0 +1,36 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+    height: 9vh;
+    align-items: center;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .logo {
+    padding: 12px;
+    font-size: 20px;
+    line-height: 9vh; /* Center text vertically */
+  }
+  
+  .logoImg {
+    height: 50px;
+    width: 60px;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  .menus > a {
+    margin: 15px;
+    font-size: 18px;
+    line-height: 9vh; /* Center text vertically */
+  }
+  
