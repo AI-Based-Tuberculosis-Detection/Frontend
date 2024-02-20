@@ -5,7 +5,8 @@ import logo from './assets/logo/1.png';
 const Navbar = () => {
     const navOptions = [
         {name:'Home',link:'/'},
-        {name:'Get started',link:'/get-started'}
+        {name:'Get started',link:'/get-started'},
+        {name:'Contact',link:'/team'}
     ];
 
     return(

@@ -1,36 +1,59 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: black;
-    color: white;
-    height: 9vh;
-    align-items: center;
-  }
-  
-  a {
-    text-decoration: none;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  height: 9vh;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo {
+  padding: 12px;
+  font-size: 20px;
+  line-height: 9vh; /* Center text vertically */
+}
+
+.logoImg {
+  height: 50px;
+  width: 60px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.menus > a {
+  margin: 15px;
+  font-size: 18px;
+  line-height: 9vh; /* Center text vertically */
+}
+
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      height: auto;
   }
   
   .logo {
-    padding: 12px;
-    font-size: 20px;
-    line-height: 9vh; /* Center text vertically */
-  }
-  
-  .logoImg {
-    height: 50px;
-    width: 60px;
+      line-height: initial; /* Reset line-height */
+      margin-bottom: 10px; /* Add margin bottom for spacing */
   }
   
   ul {
-    list-style: none;
-    display: flex;
+      flex-direction: column;
+      align-items: center;
   }
   
   .menus > a {
-    margin: 15px;
-    font-size: 18px;
-    line-height: 9vh; /* Center text vertically */
+      margin: 5px 0; /* Adjust margin for spacing */
+      line-height: initial; /* Reset line-height */
   }
-  
+}

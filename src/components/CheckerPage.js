@@ -11,6 +11,7 @@ class CheckerPage extends Component {
       resultImage: null,
       loading: false,
       error: null,
+      countdown: 5, // Initial countdown value
     };
   }
 
@@ -26,10 +27,7 @@ class CheckerPage extends Component {
 
     if (!this.state.uploadedImage) {
       console.error("No file selected");
-      this.setState({
-        loading: false,
-        error: "No file selected",
-      });
+      this.showError("No file selected");
       return;
     }
 
@@ -55,10 +53,7 @@ class CheckerPage extends Component {
       });
     } catch (error) {
       console.error(error);
-      this.setState({
-        loading: false,
-        error: "Error processing image",
-      });
+      this.showError("Error processing image");
     }
   };
 
@@ -71,61 +66,114 @@ class CheckerPage extends Component {
     }
   };
 
+  showError = (errorMessage) => {
+    this.setState({ error: errorMessage, loading: false, countdown: 5 }); // Reset countdown and stop loading
+    const countdownInterval = setInterval(() => {
+      this.setState((prevState) => ({
+        countdown: prevState.countdown - 1,
+      }));
+    }, 1000);
+
+    setTimeout(() => {
+      clearInterval(countdownInterval); // Stop countdown
+      this.setState({ error: null });
+    }, 5000);
+  };
+
   render() {
     return (
-      <div>
-        <div className={classes.box}>
-          <h1 style={{ textAlign: 'center' }} className={classes.title}>
-            AI-Assisted Tuberculosis Detection
-          </h1>
+      <div className="container">
+        {/* Error message with countdown */}
+        {this.state.error && (
+          <div className="row">
+            <div className="col">
+              <div className="alert alert-danger" role="alert">
+                {this.state.error} ({this.state.countdown})
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {/* Main content */}
+        <div className="row">
+          <div className="col-md-12">
+            <div className={classes.box}>
+              <h1 className={`${classes.title} text-center`}>
+                AI-Assisted Tuberculosis Detection
+              </h1>
 
-          <br />
-          <form
+              <br />
+              <form
             style={{
               width: '60%',
             }}
             encType="multipart/form-data" // Ensure proper form submission for file upload
             onSubmit={this.uploadFile}
           >
-            <input
-              className="form-control"
-              type="file"
-              name="file-input"
-              onChange={this.handleFileInputChange}
-            />
-            <br />
-            <button type="submit" className={classes['btn-primary']}>
-              Submit
-            </button>
-          </form>
-        </div>
-        <div className={classes.results}>
-          {this.state.uploadedImage !== null ? (
-            <div className={classes.imageContainer}>
-              <img
-                className={classes.image}
-                src={URL.createObjectURL(this.state.uploadedImage)}
-                alt=""
-              />
-              {this.state.loading ? (
-                <p>Loading...</p>
-              ) : (
-                this.state.visible && (
+                <input
+                  className="form-control"
+                  type="file"
+                  name="file-input"
+                  onChange={this.handleFileInputChange}
+                />
+                <br />
+                <button type="submit" className={`btn ${classes['btn-primary']} btn-block`}>
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+          {this.state.loading && (
+          <div className="row">
+            <div className="col">
+              <div className={classes.results}>
+                <div className={classes.spinner}></div>
+              </div>
+            </div>
+          </div>
+        )}
+
+          {/* Uploaded image */}
+          {this.state.uploadedImage && (
+            <div className="col-md-6">
+              <div className={classes.results}>
+                <div className={classes.text}>Uploaded X-Ray</div>
+                <div className={classes.imageContainer}>
                   <img
                     className={classes.image}
-                    src={this.state.resultImage}
-                    alt="Result with bounding boxes"
+                    src={URL.createObjectURL(this.state.uploadedImage)}
+                    alt=""
+                    width="400"
+                    height="400"
+                    style={{ border: '1px solid black', borderRadius: '12px' }}
                   />
-                )
-              )}
+                </div>
+              </div>
             </div>
-          ) : (
-            <p>No file selected</p>
           )}
-          {this.state.error && (
-            <p style={{ color: 'red' }}>{this.state.error}</p>
+
+          {/* Result display */}
+          {this.state.visible && (
+            <div className="col-md-6">
+            <div className={classes.results}>
+              <div className={classes.text}>Output X-ray</div>
+              <div className={classes.imageContainer}>
+                <img
+                  className={classes.image}
+                  src={this.state.resultImage}
+                  alt=""
+                  width="400"
+                  height="400"
+                  style={{ border: '1px solid black', borderRadius: '12px' }}
+                />
+              </div>
+            </div>
+          </div>
           )}
         </div>
+
+        {/* Loading spinner */}
+        
       </div>
     );
   }

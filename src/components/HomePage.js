@@ -15,10 +15,10 @@ const HomePage = () => {
           </Link>
         </div>
       </div>
-
-      <footer className={classes.footer}>
-        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-      </footer>
+{/* 
+      <footer className={classes.footer} >
+        <p className='footcont'>&copy; AI-Based Tuberculosis Detection. All rights reserved.</p>
+      </footer> */}
     </div>
   );
 }

@@ -31,6 +31,68 @@
     outline: none;
     border-radius: 12px;
     cursor: pointer;
+    margin:20px;
+}
+
+.quote {
+    font-size: 28px;
+    padding:8px;
+    font-family: 'Handlee', cursive;
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+  }
+  
+  .footer {
+    margin-top: auto;
+    background: transparent;
+    text-align: center;
+  }
+  
+  .footerContent {
+    margin-top: 20px;
+    position: relative;
+    height: 7vh;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @import url('https:/fonts.googleapis.com/css2?family=Handlee&family=Sarabun&display=swap');
+
+.container{
+    height: 91vh;
+    width: 100%;
+    background-image: url('https://img.freepik.com/premium-photo/world-anti-smoking-campaigns-focus-lung-health-issues-such-as-tuberculosis-copd-pneumonia-lung-ca_908985-45152.jpg?size=626&ext=jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+.inner-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 80%;
+}
+
+.primary{
+    background:linear-gradient(45deg,orange,orangered);
+    color:white;
+    font-size:18px;
+    padding:8px;
+    border:none;
+    outline: none;
+    border-radius: 12px;
+    cursor: pointer;
     margin:10px;
 }
 
@@ -43,18 +105,34 @@
 .pageContainer {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-  }
+    height: fit-content;
+}
   
-  .footer {
+.footer {
     margin-top: auto;
-    background-color: #f2f2f2;
+    background: transparent;
     text-align: center;
-  }
-  
-  .footerContent {
+    color:rgb(0, 0, 0);
+    padding: 15 px;
+}
+.footcont{
+    margin-top: 10px;
+}
+
+.footerContent {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-  }
-  
+}
+
+@media (max-width: 768px) {
+    .inner-container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .quote {
+        font-size: 24px;
+    }
+}
