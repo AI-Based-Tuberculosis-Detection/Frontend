@@ -1,6 +1,5 @@
 import React from 'react';
 import '../components/styles/Members.css';
-// import cyberguard360Logo from '../components/images/cyberguardlogo.png';
 
 
 const Members = () => {
